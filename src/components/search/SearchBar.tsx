@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { useAppDispatch } from '@/store/index';
 import { searchJokes } from '@/store/slices/jokesSlice';
 import { Input } from '@/components/ui/input';
@@ -6,10 +6,27 @@ import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function SearchBar() {
+/**
+ * SearchBar component allows users to search for jokes.
+ *
+ * It includes an input field for typing the search query and a submit button.
+ * Uses Redux to dispatch the search action and Framer Motion for simple animations.
+ *
+ * @component
+ * @example
+ * return <SearchBar />;
+ */
+export default function SearchBar(): JSX.Element {
   const [query, setQuery] = useState('');
   const dispatch = useAppDispatch();
 
+  /**
+   * Handles the form submission.
+   * Prevents the default form behavior, validates the input,
+   * and dispatches the `searchJokes` action if the query is not empty.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e - The form submit event
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;

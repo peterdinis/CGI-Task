@@ -1,4 +1,4 @@
-import type { FC, JSX } from 'react';
+import type { JSX } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 
@@ -26,10 +26,10 @@ type JokeCardProps = {
  * @param {string | null} props.category - The category of the joke.
  * @returns {JSX.Element} A motion-animated card containing the joke and category.
  */
-const JokeCard: FC<JokeCardProps> = ({
+export default function JokeCard({
   joke,
   category,
-}: JokeCardProps): JSX.Element => {
+}: JokeCardProps): JSX.Element {
   return (
     <motion.div
       key={joke} // ensures re-animation when the joke text changes
@@ -53,6 +53,4 @@ const JokeCard: FC<JokeCardProps> = ({
       </Card>
     </motion.div>
   );
-};
-
-export default JokeCard;
+}
