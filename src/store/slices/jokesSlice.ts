@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+// Z ENV súboru
+const API_BASE = import.meta.env.VITE_CHUCK_NORRIS_API;
+
 /**
  * Fetch a random joke from the Chuck Norris API.
  *
@@ -10,7 +13,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchRandomJoke = createAsyncThunk(
   'jokes/fetchRandomJoke',
   async () => {
-    const res = await fetch('https://api.chucknorris.io/jokes/random');
+    const res = await fetch(`${API_BASE}/random`);
     const data = await res.json();
     return data.value;
   }
@@ -27,9 +30,7 @@ export const fetchRandomJoke = createAsyncThunk(
 export const fetchJokeByCategory = createAsyncThunk(
   'jokes/fetchJokeByCategory',
   async (category: string) => {
-    const res = await fetch(
-      `https://api.chucknorris.io/jokes/random?category=${category}`
-    );
+    const res = await fetch(`${API_BASE}/random?category=${category}`);
     const data = await res.json();
     return { joke: data.value, category };
   }
@@ -49,9 +50,7 @@ export const fetchJokeByCategory = createAsyncThunk(
 export const searchJokes = createAsyncThunk(
   'jokes/searchJokes',
   async (query: string, { rejectWithValue }) => {
-    const res = await fetch(
-      `https://api.chucknorris.io/jokes/search?query=${query}`
-    );
+    const res = await fetch(`${API_BASE}/search?query=${query}`);
     const data = await res.json();
     if (data.result.length === 0) {
       return rejectWithValue('No joke found for this query');
@@ -71,7 +70,7 @@ export const searchJokes = createAsyncThunk(
 export const fetchCategories = createAsyncThunk(
   'jokes/fetchCategories',
   async () => {
-    const res = await fetch('https://api.chucknorris.io/jokes/categories');
+    const res = await fetch(`${API_BASE}/categories`);
     const data = await res.json();
     return data as string[];
   }
