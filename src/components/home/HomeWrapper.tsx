@@ -24,7 +24,7 @@ import { fetchRandomJoke } from '@/store//slices/jokesSlice';
  * @component
  * @returns {JSX.Element} The rendered home page layout.
  */
-export default function Home(): JSX.Element {
+export default function HomeWrapper(): JSX.Element {
   const dispatch = useAppDispatch();
 
   /**

@@ -1,9 +1,9 @@
 import type { FC } from 'react';
-import Home from './components/home/HomeWrapper';
 import './App.css';
+import HomeWrapper from './components/home/HomeWrapper';
 
 const App: FC = () => {
-  return <Home />;
+  return <HomeWrapper />;
 };
 
 export default App;
